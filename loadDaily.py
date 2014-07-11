@@ -11,7 +11,7 @@ def loadFile(file, collection):
         collection.insert(json.loads(json.dumps(row)))
 
 if __name__=="__main__":
-    date=str(int(strftime("%Y%m%d"))-1)
+    date=strftime("%Y%m%d")
     amexfile = 'AMEX_'
     nysefile = 'NYSE_'
     nasdaqfile='NASDAQ_'
@@ -21,7 +21,7 @@ if __name__=="__main__":
     connection = pymongo.Connection("mongodb://localhost", safe=True)
     # get a handle to the database
     db=connection['optionstore']
-    db.daily.drop()
+    #db.daily.drop()
     collection = db.daily
 
     loadFile(fileprefix+amexfile+date+filesuffix, collection)
